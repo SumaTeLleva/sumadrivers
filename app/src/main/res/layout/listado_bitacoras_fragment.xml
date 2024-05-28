@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="localViewModel"
+            type="mx.suma.drivers.bitacoras.listado.ListadoBitacorasViewModel" />
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <include layout="@layout/lce_loading"
+            app:goneUnlessStatusLoading="@{localViewModel.estatus}"/>
+
+        <include layout="@layout/lce_no_content"
+            app:goneUnlessStatusNoContent="@{localViewModel.estatus}" />
+
+        <include layout="@layout/lce_error"
+            app:goneUnlessStatusError="@{localViewModel.estatus}" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            app:goneUnlessStatusContent="@{localViewModel.estatus}"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="40dp">
+            <TextView
+                android:id="@+id/textView13"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:text="@{localViewModel.currentDate}"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="2020-03-30" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/bitacoras_list"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView13" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <LinearLayout
+            android:id="@+id/linearLayout6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="bottom"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+            <Button
+                android:id="@+id/bt_back_b"
+                style="@style/Widget.Material3.Button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/TextAppearance.AppCompat.Button"
+                android:layout_weight="1"
+                android:layout_marginHorizontal="5dp"
+                android:onClick="@{() -> localViewModel.onPrevious24h()}"
+                android:text="@string/atras" />
+            <Button
+                android:id="@+id/bt_now_b"
+                style="@style/Widget.Material3.Button"
+                android:textAppearance="@style/TextAppearance.AppCompat.Button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="5dp"
+                android:layout_weight="1"
+                android:onClick="@{() -> localViewModel.onToday()}"
+                android:text="@string/hoy" />
+
+            <Button
+                android:id="@+id/bt_next_b"
+                style="@style/Widget.Material3.Button"
+                android:textAppearance="@style/TextAppearance.AppCompat.Button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="5dp"
+                android:layout_weight="1"
+                android:onClick="@{() -> localViewModel.onNext24h()}"
+                android:text="@string/siguiente" />
+        </LinearLayout>
+    </FrameLayout>
+</layout>

@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="bitacora"
+            type="mx.suma.drivers.models.db.BitacoraModel" />
+
+        <variable
+            name="clickListener"
+            type="mx.suma.drivers.bitacoras.listado.BitacorasClickListener" />
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginHorizontal="8dp"
+        android:layout_marginBottom="4dp"
+        app:cardElevation="3dp"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:onClick="@{() -> clickListener.onClick(bitacora)}">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="4dp">
+
+            <ImageView
+                android:id="@+id/imageView4"
+                android:layout_width="60dp"
+                android:layout_height="110dp"
+                android:contentDescription="@string/logo_de_la_empresa"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@drawable/logo_suma"
+                app:logoEmpresa="@{bitacora}" />
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:contentDescription="@string/persona"
+                android:src="@drawable/ic_person_blue"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="0dp"
+                android:layout_height="30sp"
+                android:text="@{bitacora.nombreRuta}"
+                android:textAlignment="center"
+                android:textStyle="bold"
+                android:autoSizeTextType="uniform"
+                app:layout_constraintEnd_toStartOf="@+id/imageView2"
+                app:layout_constraintStart_toEndOf="@+id/imageView4"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="RUTA DE PRUEBA" />
+
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="0dp"
+                android:layout_height="25dp"
+                android:textAlignment="center"
+                android:paddingTop="4dp"
+                tools:text="Km: 447788 a 447827"
+                android:autoSizeTextType="uniform"
+                app:kilometrajesBitacora="@{bitacora}"
+                app:layout_constraintEnd_toEndOf="@+id/textView"
+                app:layout_constraintStart_toStartOf="@+id/textView"
+                app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="0dp"
+                android:layout_height="25dp"
+                android:textAlignment="center"
+                android:paddingTop="4dp"
+                android:autoSizeTextType="uniform"
+                tools:text="De: 4:35am a 5:30am"
+                app:horariosBitacora="@{bitacora}"
+                app:layout_constraintEnd_toEndOf="@+id/textView5"
+                app:layout_constraintStart_toStartOf="@+id/textView5"
+                app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                app:idBitacora="@{bitacora}"
+                android:autoSizeTextType="uniform"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/textView9"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/imageView4"
+                app:layout_constraintStart_toStartOf="@+id/textView6"
+                tools:text="ID: 1155284" />
+
+            <TextView
+                android:id="@+id/textView9"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                tools:text="F: 23"
+                app:folioBitacora="@{bitacora}"
+                android:autoSizeTextType="uniform"
+                app:layout_constraintBaseline_toBaselineOf="@+id/textView8"
+                app:layout_constraintEnd_toStartOf="@+id/textView10"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/textView8" />
+
+            <TextView
+                android:id="@+id/textView10"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:text="@{bitacora.tipo}"
+                android:textStyle="italic"
+                android:autoSizeTextType="uniform"
+                app:layout_constraintBaseline_toBaselineOf="@+id/textView9"
+                app:layout_constraintEnd_toEndOf="@+id/textView6"
+                app:layout_constraintStart_toEndOf="@+id/textView9"
+                tools:text="Medio" />
+
+            <TextView
+                android:layout_width="35dp"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                tools:text="20"
+                app:layout_constraintBottom_toTopOf="@+id/imageView3"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView2"
+                app:layout_constraintVertical_bias="0.0"
+                app:personasBitacora="@{bitacora}" />
+
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                tools:src="@drawable/ic_servicio_programado"
+                android:contentDescription="@string/servicio_por_confirmar"
+                app:estatusServicio="@{bitacora}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+</layout>

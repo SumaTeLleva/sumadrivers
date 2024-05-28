@@ -1,0 +1,93 @@
+{
+  "project_info": {
+    "project_number": "127291192630",
+    "firebase_url": "https://sumadriversv2.firebaseio.com",
+    "project_id": "sumadriversv2",
+    "storage_bucket": "sumadriversv2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:127291192630:android:f7d3c308b29a388d74ef97",
+        "android_client_info": {
+          "package_name": "mx.suma.drivers"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "127291192630-ffqmm4a67qfm7f8sms3d8i50of99413t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyByn4y2-XphRyqsoa8I7zFbq6Qbu_FaSTY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "127291192630-ffqmm4a67qfm7f8sms3d8i50of99413t.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:127291192630:android:636de5e214eac55f74ef97",
+        "android_client_info": {
+          "package_name": "mx.suma.sumadriversv2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "127291192630-ch0iprdhv9b0d46mko2db87jg21f15tt.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "mx.suma.sumadriversv2",
+            "certificate_hash": "bff6687166b4384f7633e0232a9eefd4d4545d3a"
+          }
+        },
+        {
+          "client_id": "127291192630-p1cuta7lano1mi4d58gfoaum48dijsvm.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "mx.suma.sumadriversv2",
+            "certificate_hash": "d6a5562c6d4220fa00080604516e646726007ffa"
+          }
+        },
+        {
+          "client_id": "127291192630-sr3je8f25g0amsuia2vcnkrks787dvs3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "mx.suma.sumadriversv2",
+            "certificate_hash": "c6d876eef5800606256f4e2b2f2a1811ad00ecb2"
+          }
+        },
+        {
+          "client_id": "127291192630-ffqmm4a67qfm7f8sms3d8i50of99413t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyByn4y2-XphRyqsoa8I7zFbq6Qbu_FaSTY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "127291192630-ffqmm4a67qfm7f8sms3d8i50of99413t.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

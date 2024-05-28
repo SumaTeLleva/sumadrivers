@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!--<PreferenceCategory
+        app:key="notifications_category"
+        app:title="Datos en cache"
+        app:icon="@drawable/ic_cloud_done">
+
+        <SwitchPreferenceCompat
+            app:key="HAS_CACHE_DIRECTORIO"
+            app:title="Directorio"
+            app:enabled="false"
+            app:icon="@drawable/ic_contact_phone_grey"/>
+
+        <SwitchPreferenceCompat
+            app:key="HAS_CACHE_UNIDADES"
+            app:title="Unidades"
+            app:enabled="false"
+            app:icon="@drawable/ic_directions_bus"/>
+
+        <SwitchPreferenceCompat
+            app:key="HAS_CACHE_GASOLINERAS"
+            app:title="Gasolineras"
+            app:enabled="false"
+            app:icon="@drawable/ic_gasolinera"/>
+    </PreferenceCategory>-->
+
+    <PreferenceCategory
+        app:key="notifications_category"
+        app:title="Firebase"
+        app:icon="@drawable/ic_message">
+
+        <SwitchPreferenceCompat
+            app:key="HAS_FIREBASE_TOKEN"
+            app:title="Token de Firebase"
+            app:enabled="false"
+            app:icon="@drawable/ic_vpn_key"/>
+
+        <SwitchPreferenceCompat
+            app:key="IS_DISPOSITIVO_SUSCRIBED"
+            app:title="Dispositivo registrado"
+            app:enabled="false"
+            app:icon="@drawable/ic_mobile_friendly"/>
+    </PreferenceCategory>
+</PreferenceScreen>

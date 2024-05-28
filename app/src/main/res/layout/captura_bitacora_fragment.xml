@@ -1,0 +1,448 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="mx.suma.drivers.bitacoras.captura.CapturaBitacoraViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_content_bitacora"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            app:cardElevation="4dp"
+            app:contentPadding="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/pb_captura_bitacora">
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/ll_detalle_bitacora"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
+                android:orientation="vertical"
+                android:padding="8dp"
+                android:visibility="visible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_detalle_nombre_ruta"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:text="@{viewModel.data.nombreRuta}"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textStyle="bold"
+                    tools:text="Nombre de la ruta" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_detalle_turno"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:text="@{viewModel.data.turno}"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                    android:textStyle="bold"
+                    tools:text="TURNO" />
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingTop="4dp"
+                    android:paddingBottom="4dp">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_detalle_fecha"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center_horizontal"
+                        android:text="@{viewModel.fechaBitacora}"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                        tools:text="16 - Jun - 2017" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_detalle_horarios"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2"
+                        android:gravity="center"
+                        android:text="@{viewModel.horariosBitacora}"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                        tools:text="9:00am a 10:00am" />
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_servicio_confirmado"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:gravity="center"
+                    android:text="@{viewModel.estatusBitacora}"
+                    android:textAllCaps="true"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:visibility="visible"
+                    tools:text="Servicio confirmado (U1)" />
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/ll_detalle_kilometrajes"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingTop="4dp"
+                    android:paddingBottom="4dp"
+                    app:goneUnless="@{viewModel.mostrarConfirmacion}">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_detalle_km_inicial"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                        tools:text="Km. Inicial: #####" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_detalle_km_final"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                        tools:text="Km. Final: #####" />
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/ll_detalle_arranque_cierre"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingTop="4dp"
+                    android:paddingBottom="4dp"
+                    app:goneUnless="@{viewModel.mostrarAbrirBitacora}">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_detalle_hora_arranque"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                        tools:text="Arranque: ?" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_detalle_hora_cierre"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                        tools:text="Cierre: ?" />
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/ll_detalle_inicio_final"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingTop="4dp"
+                    android:paddingBottom="4dp"
+                    app:goneUnless="@{viewModel.mostrarIniciarRuta}">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_detalle_hora_inicio"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                        tools:text="Inicio: ?" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_detalle_hora_fin"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                        tools:text="Cierre: ?" />
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+        </com.google.android.material.card.MaterialCardView>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            style="@style/AlertMessage"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:text="@{viewModel.errorMessage}"
+            app:goneUnless="@{viewModel.hasErrorMessage}"
+            app:layout_constraintBottom_toTopOf="@+id/til_kilometraje_final"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cg_otras_acciones" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_accion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/md_theme_secondary"
+            android:gravity="center"
+            android:padding="4dp"
+            android:text="@{viewModel.estatusAccion}"
+            android:textAllCaps="true"
+            android:textAppearance="@style/TextAppearance.Material3.ActionBar.Title"
+            android:textColor="@color/md_theme_onSecondary"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Acción" />
+
+        <com.google.android.material.progressindicator.LinearProgressIndicator
+            android:id="@+id/pb_captura_bitacora"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:indeterminate="true"
+            android:visibility="visible"
+            app:goneUnless="@{viewModel.isSendingRequest}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_accion"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_confirmar_servicio"
+            style="@style/Widget.Material3.Button"
+            android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="4dp"
+            android:enabled="@{viewModel.datosValidos}"
+            android:onClick="@{() -> viewModel.onConfirmarServicio()}"
+            android:text="@string/confirmar_servicio"
+            android:visibility="invisible"
+            app:goneUnless="@{viewModel.mostrarConfirmacion}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_folio_bitacora"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginEnd="2dp"
+            android:visibility="gone"
+            app:endIconMode="clear_text"
+            app:goneUnless="@{viewModel.mostrarAbrirBitacora}"
+            app:layout_constraintBottom_toTopOf="@+id/btn_abrir_bitacora"
+            app:layout_constraintEnd_toStartOf="@+id/til_kilometraje_inicial"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_folio_bitacora"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/stringFolioBitacora"
+                android:importantForAutofill="no"
+                android:inputType="number"
+                tools:layout_editor_absoluteX="-8dp"
+                tools:layout_editor_absoluteY="404dp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_kilometraje_inicial"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="2dp"
+            android:layout_marginEnd="4dp"
+            android:layout_weight="1.0"
+            android:visibility="gone"
+            app:endIconMode="clear_text"
+            app:goneUnless="@{viewModel.mostrarAbrirBitacora}"
+            app:layout_constraintBottom_toTopOf="@+id/btn_abrir_bitacora"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/til_folio_bitacora">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_kilometraje_inicial"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/kilometrajeFicial"
+                android:importantForAutofill="no"
+                android:inputType="number" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.button.MaterialButton
+            style="@style/Widget.Material3.Button"
+            android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
+            android:id="@+id/btn_abrir_bitacora"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="4dp"
+            android:enabled="@{viewModel.datosValidos}"
+            android:onClick="@{() -> viewModel.onAbrirBitacora()}"
+            android:text="@string/abrir_bitacora"
+            android:visibility="visible"
+            app:goneUnless="@{viewModel.mostrarAbrirBitacora}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <com.google.android.material.button.MaterialButton
+            style="@style/Widget.Material3.Button"
+            android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
+            android:id="@+id/btn_iniciar_ruta"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="4dp"
+            android:enabled="@{viewModel.datosValidos}"
+            android:onClick="@{() -> viewModel.onIniciarServicio()}"
+            android:text="@string/iniciar_ruta"
+            android:visibility="visible"
+            app:goneUnless="@{viewModel.mostrarIniciarRuta}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_numero_personas"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:hint="@string/numeroPersonas"
+            android:importantForAutofill="no"
+            android:visibility="gone"
+            app:endIconMode="clear_text"
+            app:goneUnless="@{viewModel.mostrarTerminarRuta}"
+            app:layout_constraintBottom_toTopOf="@+id/btn_terminar_ruta"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_numero_personas"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.button.MaterialButton
+            style="@style/Widget.Material3.Button"
+            android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
+            android:id="@+id/btn_terminar_ruta"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="4dp"
+            android:enabled="@{viewModel.datosValidos}"
+            android:onClick="@{() -> viewModel.onTerminarServicio()}"
+            android:text="@string/terminar_ruta"
+            android:visibility="visible"
+            app:goneUnless="@{viewModel.mostrarTerminarRuta}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_kilometraje_final"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:visibility="gone"
+            app:endIconMode="clear_text"
+            app:errorEnabled="false"
+            app:goneUnless="@{viewModel.mostrarCerrarBitacora}"
+            app:layout_constraintBottom_toTopOf="@+id/btn_cerrar_bitacora"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_kilometraje_final"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/stringKilometrajeFinal"
+                android:importantForAutofill="no"
+                android:inputType="number" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.button.MaterialButton
+            style="@style/Widget.Material3.Button"
+            android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
+            android:id="@+id/btn_cerrar_bitacora"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="4dp"
+            android:enabled="@{viewModel.datosValidos}"
+            android:text="@string/cerrar_bitacora"
+            android:visibility="visible"
+            app:goneUnless="@{viewModel.mostrarCerrarBitacora}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <com.google.android.material.chip.ChipGroup
+            app:singleLine="true"
+            android:id="@+id/cg_otras_acciones"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/card_view">
+
+            <com.google.android.material.chip.Chip
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="@{() -> viewModel.onNavigateToMapa()}"
+                android:text="@string/ver_mapa" />
+
+            <com.google.android.material.chip.Chip
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="@{() -> viewModel.onActivarLetrero()}"
+                android:text="@string/activar_letrero"/>
+            <com.google.android.material.chip.Chip
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:enabled="@{viewModel.mostrarTerminarRuta}"
+                android:onClick="@{() -> viewModel.onMostrarEscaner()}"
+                app:chipIcon="@drawable/qr_code_scanner_24"
+                app:chipIconSize="20dp"
+                android:text="Asistencia"/>
+        </com.google.android.material.chip.ChipGroup>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

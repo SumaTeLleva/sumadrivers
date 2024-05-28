@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/panelFragment">
+
+    <fragment
+        android:id="@+id/starterAppFragment"
+        android:name="mx.suma.drivers.appstarter.StarterAppFragment"
+        android:label="StarterApp"
+        tools:layout="@layout/starter_app_fragment" >
+        <action
+            android:id="@+id/action_starterAppFragment_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:popUpTo="@id/starterAppFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_starterAppFragment_to_panelFragment"
+            app:destination="@id/panelFragment"
+            app:popUpTo="@id/starterAppFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="mx.suma.drivers.login.LoginFragment"
+        android:label="Login"
+        tools:layout="@layout/login_fragment" >
+        <action
+            android:id="@+id/action_loginFragment_to_starterAppFragment"
+            app:destination="@id/starterAppFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_loginFragment_to_configuracionServidorFragement"
+            app:destination="@+id/configuracionServidorFragment"
+            app:popUpToInclusive="true"/>
+    </fragment>
+    <fragment
+        android:id="@+id/configuracionServidorFragment"
+        android:name="mx.suma.drivers.configuracionservidor.ConfiguracionServidorFragment"
+        android:label="Conexión"
+        tools:layout="@layout/configuracion_servidor_fragment">
+        <action
+            android:id="@+id/action_configuracion_servidor_fragment_to_login_fragment"
+            app:destination="@id/configuracionServidorFragment"
+            app:popUpToInclusive="true"/>
+    </fragment>
+    <fragment
+        android:id="@+id/panelFragment"
+        android:name="mx.suma.drivers.panel.PanelFragment"
+        android:label="Panel"
+        tools:layout="@layout/panel_fragment" >
+        <action
+            android:id="@+id/action_panelFragment_to_ticketsFragment"
+            app:destination="@id/ticketsFragment" />
+        <action
+            android:id="@+id/action_panelFragment_to_listadoBitacorasFragment"
+            app:destination="@id/listadoBitacorasFragment" />
+        <action
+            android:id="@+id/action_panelFragment_to_otherKitFragment"
+            app:destination="@id/otherKitFragment" />
+        <action
+            android:id="@+id/action_panelFragment_to_listadoMantenimientosFragment"
+            app:destination="@id/listadoMantenimientosFragment" />
+        <action
+            android:id="@+id/action_panelFragment_to_directorioFragment"
+            app:destination="@id/directorioFragment" />
+        <action
+            android:id="@+id/action_panelFragment_to_listadoAuditoriasFragment"
+            app:destination="@id/listadoAuditoriasFragment" />
+        <action
+            android:id="@+id/action_panelFragment_to_miUnidadFragment"
+            app:destination="@id/miUnidadFragment" />
+        <action
+            android:id="@+id/action_panelFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
+        <action
+            android:id="@+id/action_panelFragment_to_starterAppFragment"
+            app:destination="@id/starterAppFragment"
+            app:popUpTo="@id/panelFragment"
+            app:popUpToInclusive="false" />
+        <action
+            android:id="@+id/action_panelFragment_to_listadoSanitizaciones"
+            app:destination="@id/listadoSanitizaciones" />
+        <action
+            android:id="@+id/action_panelFragment_to_encuestaCovid"
+            app:destination="@id/encuestaCovid" />
+        <action
+            android:id="@+id/action_panelFragment_to_carousel"
+            app:destination="@id/carouselPage" />
+        <action
+            android:id="@+id/action_panelFragment_to_solDesplazamiento"
+            app:destination="@id/solDesplazamiento" />
+    </fragment>
+    <fragment
+        android:id="@+id/ticketsFragment"
+        android:name="mx.suma.drivers.tickets.listado.ListadoTicketsFragment"
+        android:label="Combustible"
+        tools:layout="@layout/listado_tickets_fragment" >
+        <action
+            android:id="@+id/action_ticketsFragment_to_capturaTicketFragment"
+            app:destination="@id/capturaTicketFragment" />
+        <action
+            android:id="@+id/action_ticketsFragment_to_mapaGasActivity"
+            app:destination="@id/mapaGasActivity" />
+    </fragment>
+    <fragment
+        android:id="@+id/listadoBitacorasFragment"
+        android:name="mx.suma.drivers.bitacoras.listado.ListadoBitacorasFragment"
+        android:label="Servicios"
+        tools:layout="@layout/listado_bitacoras_fragment" >
+        <action
+            android:id="@+id/action_listadoBitacorasFragment_to_capturaBitacoraFragment"
+            app:destination="@id/capturaBitacoraFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/listadoMantenimientosFragment"
+        android:name="mx.suma.drivers.mantenimientos.listado.ListadoMantenimientosFragment"
+        android:label="Mantenimientos"
+        tools:layout="@layout/listado_mantenimientos_fragment" >
+        <argument
+            android:name="usuario"
+            app:argType="mx.suma.drivers.models.db.UsuarioModel" />
+        <action
+            android:id="@+id/action_listadoMantenimientosFragment_to_capturaPendienteMantenimientoFragment"
+            app:destination="@id/capturaPendienteMantenimientoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/directorioFragment"
+        android:name="mx.suma.drivers.directorio.DirectorioFragment"
+        android:label="Directorio"
+        tools:layout="@layout/directorio_fragment" />
+    <fragment
+        android:id="@+id/listadoAuditoriasFragment"
+        android:name="mx.suma.drivers.auditorias.ListadoAuditoriasFragment"
+        android:label="listado_auditorias_fragment"
+        tools:layout="@layout/listado_auditorias_fragment" />
+    <fragment
+        android:id="@+id/capturaTicketFragment"
+        android:name="mx.suma.drivers.tickets.captura.CapturaTicketFragment"
+        android:label="Registrar ticket"
+        tools:layout="@layout/captura_ticket_fragment">
+        <action
+            android:id="@+id/action_capturaTicketFragment_to_ticketsFragment"
+            app:destination="@id/ticketsFragment"
+            app:popUpTo="@id/ticketsFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/capturaBitacoraFragment"
+        android:name="mx.suma.drivers.bitacoras.captura.CapturaBitacoraFragment"
+        android:label="Registrar servicio"
+        tools:layout="@layout/captura_bitacora_fragment">
+        <argument
+            android:name="bitacoraId"
+            app:argType="long" />
+        <action
+            android:id="@+id/action_capturaBitacoraFragment_to_mapsActivity"
+            app:destination="@id/mapsActivity" />
+        <action
+            android:id="@+id/action_capturaBitacoraFragment_to_testingFragment"
+            app:destination="@id/testingFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/miUnidadFragment"
+        android:name="mx.suma.drivers.miUnidad.MiUnidadFragment"
+        android:label="Mi Unidad"
+        tools:layout="@layout/mi_unidad_fragment" />
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="mx.suma.drivers.settings.SettingsFragment"
+        android:label="Configuraciones" />
+    <fragment
+        android:id="@+id/capturaPendienteMantenimientoFragment"
+        android:name="mx.suma.drivers.mantenimientos.captura.CapturaMantenimientoFragment"
+        android:label="Registrar Mantenimiento"
+        tools:layout="@layout/captura_pendiente_mantenimiento_fragment">
+        <action
+            android:id="@+id/action_capturaPendienteMantenimientoFragment_to_listadoMantenimientosFragment"
+            app:destination="@id/listadoMantenimientosFragment"
+            app:popUpTo="@id/listadoMantenimientosFragment"
+            app:popUpToInclusive="true" />
+        <argument
+            android:name="usuario"
+            app:argType="mx.suma.drivers.models.db.UsuarioModel" />
+    </fragment>
+    <fragment
+        android:id="@+id/mapsActivity"
+        android:name="mx.suma.drivers.mapas.MapsActivity"
+        android:label="Mapas"
+        tools:layout="@layout/activity_maps" >
+        <argument
+            android:name="idMapa"
+            app:argType="long" />
+        <argument
+            android:name="idRuta"
+            app:argType="long" />
+        <argument
+            android:name="idBitacora"
+            app:argType="long" />
+    </fragment>
+    <fragment
+        android:id="@+id/listadoSanitizaciones"
+        android:name="mx.suma.drivers.sanitizaciones.listado.ListadoSanitizacionesFragment"
+        android:label="Sanitizaciones"
+        tools:layout="@layout/listado_sanitizaciones_fragment" >
+        <action
+            android:id="@+id/action_listadoSanitizaciones_to_capturaSanitizacion"
+            app:destination="@id/capturaSanitizacion" />
+    </fragment>
+    <fragment
+        android:id="@+id/capturaSanitizacion"
+        android:name="mx.suma.drivers.sanitizaciones.captura.CapturaSanitizacionFragment"
+        android:label="Registrar Sanitización"
+        tools:layout="@layout/captura_sanitizacion_fragment" >
+        <action
+            android:id="@+id/action_capturaSanitizacion_to_recordAudioFragment"
+            app:destination="@id/recordAudioFragment"
+            app:popUpTo="@id/listadoSanitizaciones"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_capturaSanitizacion_to_recordVideoFragment"
+            app:destination="@id/recordVideoFragment"
+            app:popUpTo="@id/listadoSanitizaciones"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_capturaSanitizacion_to_listadoSanitizaciones"
+            app:destination="@id/listadoSanitizaciones"
+            app:popUpTo="@id/listadoSanitizaciones"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/recordAudioFragment"
+        android:name="mx.suma.drivers.media.audio.RecordAudioFragment"
+        android:label="Grabar audio"
+        tools:layout="@layout/record_audio_fragment" >
+        <argument
+            android:name="modulo"
+            app:argType="string" />
+        <argument
+            android:name="id"
+            app:argType="long" />
+        <action
+            android:id="@+id/action_recordAudioFragment_to_listadoSanitizaciones"
+            app:destination="@id/listadoSanitizaciones"
+            app:popUpTo="@id/recordAudioFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/recordVideoFragment"
+        android:name="mx.suma.drivers.media.video.RecordVideoFragment"
+        android:label="Grabar video"
+        tools:layout="@layout/record_video_fragment" >
+        <argument
+            android:name="modulo"
+            app:argType="string" />
+        <argument
+            android:name="id"
+            app:argType="long" />
+        <action
+            android:id="@+id/action_recordVideoFragment_to_listadoSanitizaciones"
+            app:destination="@id/listadoSanitizaciones"
+            app:popUpTo="@id/recordVideoFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/carouselPage"
+        android:name="mx.suma.drivers.carousel.CarouselFragment"
+        android:label=""
+        tools:layout="@layout/carousel_fragment" >
+        <action
+            android:id="@+id/action_carousel_to_panelFragment2"
+            app:destination="@id/panelFragment"
+            app:popUpTo="@id/carouselPage"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/encuestaCovid"
+        android:name="mx.suma.drivers.encuestaCovid.EncuestaCovidFragment"
+        android:label="Encuesta COVID"
+        tools:layout="@layout/encuesta_covid_fragment" >
+        <action
+            android:id="@+id/action_encuestaCovid_to_panelFragment2"
+            app:destination="@id/panelFragment"
+            app:popUpTo="@id/encuestaCovid"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/captureOtherKitFragment"
+        android:name="mx.suma.drivers.othersKit.capture.CaptureOtherKitFragment"
+        android:label="Capturar solicitud"
+        tools:layout="@layout/capture_other_kit" >
+        <argument
+            android:name="typeKit"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_captureOtherKitFragment_to_listOtherKitFragment"
+            app:destination="@id/otherKitFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/otherKitFragment"
+        android:name="mx.suma.drivers.othersKit.list.ListOtherKitFragment"
+        android:label="@string/others_kit"
+        tools:layout="@layout/list_other_kit" >
+        <action
+            android:id="@+id/action_listOtherKitFragment_to_captureOtherKitFragment"
+            app:destination="@id/captureOtherKitFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/testingFragment"
+        android:name="mx.suma.drivers.bitacoras.testing.TestBitacoraFragment"
+        android:label="Encuesta de unidad"
+        tools:layout="@layout/test_bitacora_fragment" >
+        <argument
+            android:name="bitacoraId"
+            app:argType="long" />
+        <action
+            android:id="@+id/action_testingFragment_to_capturaBitacoraFragment"
+            app:destination="@id/capturaBitacoraFragment" />
+        <argument
+            android:name="unidadId"
+            app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/mapaGasActivity"
+        android:name="mx.suma.drivers.gasolinera.MapsGasActivity"
+        android:label="Gasolineras"
+        tools:layout="@layout/activity_maps_gas" >
+    </fragment>
+    <fragment
+        android:id="@+id/solDesplazamiento"
+        android:name="mx.suma.drivers.solDesplazamiento.SolDesplazamientoFragment"
+        android:label="@string/sol_desplazamiento"
+        tools:layout="@layout/sol_desplazamiento_fragment" >
+    </fragment>
+</navigation>

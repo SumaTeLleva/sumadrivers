@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="mx.suma.drivers.directorio.DirectorioViewModel" />
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <include layout="@layout/lce_loading"
+            app:goneUnlessStatusLoading="@{viewModel.estatus}"/>
+
+        <include layout="@layout/lce_no_content"
+            app:goneUnlessStatusNoContent="@{viewModel.estatus}" />
+
+        <include layout="@layout/lce_error"
+            app:goneUnlessStatusError="@{viewModel.estatus}" />
+
+
+        <LinearLayout
+            app:goneUnlessStatusContent="@{viewModel.estatus}"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <SearchView
+                android:id="@+id/buscador_search"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/directorio_list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+    </FrameLayout>
+</layout>

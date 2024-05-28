@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="mx.suma.drivers.gasolinera.MapGasViewModel" />
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/coordinator_gas_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+<!--        <include layout="@layout/appbar" />-->
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/animation_view_error"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true" />
+        <fragment
+            android:id="@+id/map_gas"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".gasolinera.MapsGasActivity">
+            <com.google.android.material.button.MaterialButton
+                style="@style/Widget.Material3.Button"
+                android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
+                android:id="@+id/btn_view_run"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/secondaryDarkColor"
+                app:elevation="4dp"
+                app:icon="@drawable/ic_play_white"
+                android:text="Iniciar"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_gravity="bottom|left" />
+            <com.google.android.material.button.MaterialButton
+                style="@style/Widget.Material3.Button"
+                android:id="@+id/btn_view_List"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
+                app:elevation="4dp"
+                app:icon="@drawable/ic_list"
+                android:text="Ver lista"
+                android:layout_marginBottom="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_gravity="bottom|right" />
+        </fragment>
+        <LinearLayout
+            android:orientation="vertical"
+            android:id="@+id/gas_bottom_sheet"
+            android:background="@drawable/bottom_sheet"
+            android:layout_width="match_parent"
+            app:behavior_peekHeight="150dp"
+            android:maxHeight="450dp"
+            android:layout_height="match_parent"
+            app:behavior_hideable="true"
+            app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+            <com.google.android.material.bottomsheet.BottomSheetDragHandleView
+                android:id="@+id/drag_handle"
+                android:visibility="visible"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            </androidx.recyclerview.widget.RecyclerView>
+        </LinearLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>

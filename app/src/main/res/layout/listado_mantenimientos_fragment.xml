@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="localViewModel"
+            type="mx.suma.drivers.mantenimientos.listado.ListadoMantenimientosViewModel" />
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <include
+            layout="@layout/lce_loading"
+            app:goneUnlessStatusLoading="@{localViewModel.estatus}" />
+
+        <include layout="@layout/lce_no_content"
+            app:goneUnlessStatusNoContent="@{localViewModel.estatus}" />
+
+        <include layout="@layout/lce_error"
+            app:goneUnlessStatusError="@{localViewModel.estatus}" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            app:goneUnlessStatusContent="@{localViewModel.estatus}"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".mantenimientos.listado.ListadoMantenimientosFragment">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/listado_mantenimientos"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_agregar_mantenimiento"
+            android:layout_width="wrap_content"
+            android:onClick="@{() -> localViewModel.onNavigateToCapturaMantenimiento()}"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:layout_gravity="bottom|end"
+            app:rippleColor="@color/primaryDarkColor"
+            app:srcCompat="@drawable/ic_add" />
+    </FrameLayout>
+</layout>

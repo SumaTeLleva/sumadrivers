@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="localViewModel"
+            type="mx.suma.drivers.tickets.listado.ListadoTicketsViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <include layout="@layout/lce_loading"
+            app:goneUnlessStatusLoading="@{localViewModel.estatus}"/>
+
+        <include layout="@layout/lce_no_content"
+            app:goneUnlessStatusNoContent="@{localViewModel.estatus}" />
+
+        <include layout="@layout/lce_error"
+            app:goneUnlessStatusError="@{localViewModel.estatus}" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            app:goneUnlessStatusContent="@{localViewModel.estatus}"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:id="@+id/linearLayout5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <Button
+                    style="@style/Widget.Material3.Button.OutlinedButton"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginHorizontal="5dp"
+                    android:onClick="@{() -> localViewModel.onPreviuosMonth()}"
+                    android:text="@string/anterior"
+                    android:textSize="18sp" />
+
+                <Button
+                    style="@style/Widget.Material3.Button.OutlinedButton"
+                    android:layout_width="0dp"
+                    android:layout_marginHorizontal="5dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:onClick="@{() -> localViewModel.onNextMonth()}"
+                    android:text="@string/mes_siguiente"
+                    android:textSize="18sp" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_ticket_fecha"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="@{localViewModel.currentMonth}"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout5"
+                tools:text="Marzo 2019" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/tickets_list"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_ticket_fecha" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+            android:id="@+id/fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:backgroundTint="@color/md_theme_primary"
+            android:focusable="true"
+            android:text="Opción"
+            android:tint="@color/md_theme_onPrimary"
+            app:icon="@drawable/ic_more_option" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fabAdd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:visibility="invisible"
+            android:contentDescription="@string/aniadir_ticket"
+            app:layout_constraintBottom_toTopOf="@+id/fab"
+            app:layout_constraintEnd_toEndOf="@+id/fab"
+            android:onClick="@{() -> localViewModel.onNavigateToCapturaTickets()}"
+            app:srcCompat="@drawable/ic_add" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"
+            android:id="@+id/lyAdd"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:background="@drawable/border_content"
+            app:layout_constraintBottom_toBottomOf="@+id/fabAdd"
+            app:layout_constraintEnd_toStartOf="@id/fabAdd"
+            app:layout_constraintTop_toTopOf="@id/fabAdd">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textAdd"
+                android:layout_gravity="center"
+                android:text="@string/aniadir_ticket"
+                android:textStyle="bold"
+                android:textSize="20dp" />
+        </LinearLayout>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fabgas"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toTopOf="@+id/fabAdd"
+            app:layout_constraintEnd_toEndOf="@+id/fabAdd"
+            android:onClick="@{() -> localViewModel.onNavigateToMapaGasolineras()}"
+            app:srcCompat="@drawable/ic_gasolinera" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"
+            android:id="@+id/lyMapGas"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal"
+            android:background="@drawable/border_content"
+            app:layout_constraintBottom_toBottomOf="@+id/fabgas"
+            app:layout_constraintEnd_toStartOf="@id/fabgas"
+            app:layout_constraintTop_toTopOf="@id/fabgas">
+
+            <TextView
+                android:id="@+id/textMapGas"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/ver_gas_map"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="localViewModel"
+            type="mx.suma.drivers.encuestaCovid.EncuestaCovidViewModel" />
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/grey50"
+        android:layout_margin="2dp"
+        tools:context=".encuestaCovid.EncuestaCovidFragment">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:notGoneUnless="@{localViewModel.mensajeRecibido}">
+
+            <!-- Propósito Encuesta -->
+            <LinearLayout
+                android:visibility="invisible"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:padding="4dp"
+                app:goneUnless="@{localViewModel.comenzarEncuesta}">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:background="@color/blue_A400"
+                    android:gravity="center"
+                    android:padding="4dp"
+                    android:text="@{localViewModel.encuesta.proposito}"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                    android:textColor="#FFFFFF"
+                    android:textSize="32sp"
+                    tools:text="Buscando tu seguridad y la de tus compañeros, es necesario tu apoyo par contestar las siguientes preguntas" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:background="@color/blue_A400"
+                    android:src="@drawable/ic_encuesta_covid_cubreboca" />
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0"
+                    android:onClick="@{() -> localViewModel.onComenzarEncuesta()}"
+                    android:text="@string/comenzar" />
+            </LinearLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="8dp"
+                android:visibility="visible"
+                app:goneUnless="@{localViewModel.encuestaIniciada}">
+
+                <TextView
+                    android:id="@+id/textView21"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:text="@{localViewModel.totalContestadas}"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="Preguntas (0/11)" />
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cardView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    app:cardCornerRadius="4dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView21">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:id="@+id/imageView9"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            app:layout_constraintEnd_toStartOf="@+id/imageView8"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:preguntaImage="@{localViewModel.parActual.q.first.imagenUrl}"
+                            tools:src="@drawable/ic_encuesta_covid_q01" />
+
+                        <ImageView
+                            android:id="@+id/imageView8"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:layout_marginEnd="16dp"
+                            android:src="@drawable/ic_check_circle"
+                            android:visibility="gone"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintVertical_bias="0.0"
+                            app:preguntaContestada="@{localViewModel.parActual.r.first.respuesta}" />
+
+                        <TextView
+                            android:id="@+id/textView22"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginEnd="16dp"
+                            android:text="@{localViewModel.parActual.q.first.pregunta}"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                            app:layout_constraintBottom_toTopOf="@+id/linearLayout13"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/imageView9"
+                            tools:text="¿Has tenido tos constantemente en las ultimas 24 horas?" />
+
+                        <LinearLayout
+                            android:id="@+id/linearLayout13"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginEnd="8dp"
+                            android:orientation="horizontal"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent">
+
+                            <Button
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="@dimen/xsmall_margin"
+                                android:layout_weight="1"
+                                android:onClick="@{() -> localViewModel.onContestarPregunta(localViewModel.parActual.q.first.id, 1)}"
+                                android:text="@string/si" />
+
+                            <Button
+                                style="?attr/materialButtonOutlinedStyle"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/xsmall_margin"
+                                android:layout_weight="1"
+                                android:onClick="@{() -> localViewModel.onContestarPregunta(localViewModel.parActual.q.first.id, 0)}"
+                                android:text="@string/no" />
+                        </LinearLayout>
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cardView2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="4dp"
+                    app:layout_constraintBottom_toTopOf="@+id/button7"
+                    app:layout_constraintTop_toBottomOf="@+id/cardView"
+                    app:notGoneUnless="@{localViewModel.parActual.q.second.esPreguntaNoValida()}"
+                    tools:layout_editor_absoluteX="8dp">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/imageView11"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            app:layout_constraintEnd_toStartOf="@+id/imageView10"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:preguntaImage="@{localViewModel.parActual.q.second.imagenUrl}"
+                            tools:src="@drawable/ic_encuesta_covid_q02" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/imageView10"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:layout_marginEnd="16dp"
+                            android:src="@drawable/ic_check_circle"
+                            android:visibility="gone"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:preguntaContestada="@{localViewModel.parActual.r.second.respuesta}" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginEnd="16dp"
+                            android:text="@{localViewModel.parActual.q.second.pregunta}"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                            app:layout_constraintBottom_toTopOf="@+id/linearLayout14"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/imageView11"
+                            tools:text="¿Has tenido tos constantemente en las ultimas 24 horas?" />
+
+                        <LinearLayout
+                            android:id="@+id/linearLayout14"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginEnd="8dp"
+                            android:orientation="horizontal"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent">
+
+                            <Button
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="@dimen/xsmall_margin"
+                                android:layout_weight="1"
+                                android:onClick="@{() -> localViewModel.onContestarPregunta(localViewModel.parActual.q.second.id, 1)}"
+                                android:text="@string/si" />
+
+                            <Button
+                                style="?attr/materialButtonOutlinedStyle"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/xsmall_margin"
+                                android:layout_weight="1"
+                                android:onClick="@{() -> localViewModel.onContestarPregunta(localViewModel.parActual.q.second.id, 0)}"
+                                android:text="@string/no" />
+                        </LinearLayout>
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <Button
+                    android:id="@+id/button7"
+                    style="@style/Widget.AppCompat.Button.Colored"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:enabled="@{localViewModel.parActual.yaFueContestado()}"
+                    android:onClick="@{() -> localViewModel.onSiguienteParPreguntas()}"
+                    android:text="@string/siguiente"
+                    android:visibility="visible"
+                    app:layout_constraintBottom_toTopOf="@+id/button8"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:notGoneUnless="@{localViewModel.encuestaCovid.fueFinalizada()}" />
+
+                <Button
+                    android:id="@+id/button8"
+                    style="@style/Widget.AppCompat.Button.Colored"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:enabled="@{localViewModel.encuestaCovid.esValida()}"
+                    android:onClick="@{() -> localViewModel.onEnviarEncuesta()}"
+                    android:text="@string/enviar"
+                    app:goneUnless="@{localViewModel.encuestaCovid.fueFinalizada()}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    tools:layout_editor_absoluteX="8dp" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </FrameLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone"
+            app:goneUnless="@{localViewModel.mensajeRecibido}">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{localViewModel.mensajeResultadoEncuesta}"
+                android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                app:layout_constraintBottom_toTopOf="@+id/button11"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Texto de prueba" />
+
+            <Button
+                android:id="@+id/button11"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="@{() -> localViewModel.onNavigateToPanel()}"
+                android:text="@string/continuar"
+                app:goneUnless="@{localViewModel.mensajeRecibido}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <include
+            layout="@layout/lce_loading"
+            android:visibility="gone"
+            app:goneUnlessStatusLoading="@{localViewModel.estatus}" />
+
+        <include
+            layout="@layout/lce_no_content"
+            android:visibility="gone"
+            app:goneUnlessStatusNoContent="@{localViewModel.estatus}" />
+
+        <include
+            layout="@layout/lce_error"
+            android:visibility="gone"
+            app:goneUnlessStatusError="@{localViewModel.estatus}" />
+    </FrameLayout>
+</layout>

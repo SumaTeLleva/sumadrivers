@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="mx.suma.drivers.bitacoras.testing.TestBitacoraViewModel" />
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <include layout="@layout/lce_loading"
+            app:goneUnlessStatusLoading="@{viewModel.status}"/>
+
+        <include layout="@layout/lce_no_content"
+            app:goneUnlessStatusNoContent="@{viewModel.status}" />
+
+        <include layout="@layout/lce_error"
+            app:goneUnlessStatusError="@{viewModel.status}" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/bodyTesting"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:goneUnlessStatusContent="@{viewModel.status}"
+            >
+            <com.shuhart.stepview.StepView
+                android:id="@+id/step_view"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginBottom="16dp"
+                android:padding="8dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:sv_doneCircleRadius="12dp"
+                app:sv_doneCircleColor="@color/primaryColor"
+                app:sv_doneStepLineColor="@color/primaryLightColor"
+                app:sv_doneStepMarkColor="@color/grey50"
+                app:sv_nextStepLineColor="@color/primaryColor"
+                app:sv_nextTextColor="@color/primaryTextColor"
+                app:sv_selectedCircleColor="@color/primaryColor"
+                app:sv_selectedCircleRadius="12dp"
+                app:sv_selectedStepNumberColor="@color/primaryTextColor"
+                app:sv_selectedTextColor="@color/grey50"
+                app:sv_stepLineWidth="1dp"
+                app:sv_stepPadding="4dp"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:sv_stepViewStyle="@style/StepView"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:orientation="vertical"
+                app:layout_constraintTop_toBottomOf="@+id/step_view"
+                app:layout_constraintBottom_toTopOf="@+id/btnNext">
+
+                <include
+                    android:id="@+id/step_content"
+                    layout="@layout/test_bitacora_item"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </LinearLayout>
+
+            <com.google.android.material.button.MaterialButton
+                style="@style/Widget.Material3.Button"
+                android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
+                android:id="@+id/btnNext"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:text="Siguiente"
+                app:layout_constraintBottom_toBottomOf="parent"
+                tools:layout_editor_absoluteX="8dp" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </FrameLayout>
+</layout>

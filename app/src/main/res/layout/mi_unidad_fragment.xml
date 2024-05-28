@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="localViewModel"
+            type="mx.suma.drivers.miUnidad.MiUnidadViewModel" />
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <include layout="@layout/lce_loading"
+            app:goneUnlessStatusLoading="@{localViewModel.estatus}"/>
+
+        <include layout="@layout/lce_no_content"
+            app:goneUnlessStatusNoContent="@{localViewModel.estatus}" />
+
+        <include layout="@layout/lce_error"
+            app:goneUnlessStatusError="@{localViewModel.estatus}" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            app:goneUnlessStatusContent="@{localViewModel.estatus}"
+            goneUnless="@{localViewModel.seleccionarUnidad}"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="4dp"
+            android:visibility="visible">
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardElevation="4dp"
+                app:contentPadding="8dp"
+                android:layout_marginHorizontal="4dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="320dp"
+                    android:gravity="center"
+                    android:text="@string/msj_selecciona_unidad"
+                    android:textAllCaps="true"
+                    android:textColor="@color/primaryDarkColor"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    app:goneUnless="@{localViewModel.unidadNoValida}" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:goneUnless="@{localViewModel.unidadValida}">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="300dp"
+                        android:contentDescription="@string/foto_de_la_unidad"
+                        app:fotografiaUnidad="@{localViewModel.unidad.attr.fotografia}" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:gravity="center"
+                        android:text="@{localViewModel.descripcionUnidad}"
+                        android:textSize="24sp"
+                        android:textStyle="bold"
+                        tools:text="U33 BOXER (121RP9)" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="@{localViewModel.tipoUnidad}"
+                        android:textAllCaps="true"
+                        android:textSize="16sp"
+                        tools:text="CAMIÓN GRANDE (DIESEL)" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="@{localViewModel.pasajeros}"
+                        android:textSize="16sp"
+                        tools:text="40 pasajeros" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <LinearLayout
+                android:id="@+id/linearLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingHorizontal="4dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <Spinner
+                    android:id="@+id/sp_miunidad_unidades"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+
+                <Button
+                    android:id="@+id/bt_tomar_unidad"
+                    style="@style/Widget.Material3.Button"
+                    android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:onClick="@{() -> localViewModel.onTomarUnidad()}"
+                    android:text="@string/tomar_unidad" />
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            goneUnless="@{localViewModel.tomarUnidad}"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="8dp"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/textView16"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:text="@{localViewModel.currentTime}"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="2020-04-07 00:00:00" />
+
+            <LinearLayout
+                android:id="@+id/linearLayout7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toBottomOf="@+id/textView16"
+                tools:layout_editor_absoluteX="0dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@{localViewModel.unidadActualString}"
+                    android:textSize="24sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="Actual: U33" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="end"
+                    android:text="@{localViewModel.unidadSeleccionadaString}"
+                    android:textSize="24sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="Cambio: U45" />
+            </LinearLayout>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:hint="@string/notas"
+                android:importantForAutofill="no"
+                android:inputType="text"
+                app:layout_constraintBottom_toTopOf="@+id/button"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout7" />
+
+            <Button
+                android:id="@+id/button"
+                style="@style/Widget.Material3.Button"
+                android:layout_width="match_parent"
+                android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
+                android:layout_height="wrap_content"
+                android:onClick="@{() -> localViewModel.onCambiarUnidad()}"
+                android:text="@string/realizar_cambio"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </FrameLayout>
+</layout>

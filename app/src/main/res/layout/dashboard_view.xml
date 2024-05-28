@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="usuario"
+            type="mx.suma.drivers.models.db.UsuarioModel" />
+
+        <variable
+            name="localViewModel"
+            type="mx.suma.drivers.panel.PanelViewModel" />
+
+        <variable
+            name="mainViewModel"
+            type="mx.suma.drivers.SumaDriversViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/iv_user_photo"
+            android:layout_width="100dp"
+            android:layout_height="138dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="4dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:contentDescription="@string/foto_del_operador"
+                app:fotografiaOperador="@{usuario.fotografia}"
+                tools:srcCompat="@drawable/ic_person_blue" />
+        </androidx.cardview.widget.CardView>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="138dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:orientation="vertical"
+            android:padding="8dp"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_user_photo"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/iv_user_photo"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/tv_nombre_operador"
+                android:layout_width="wrap_content"
+                android:layout_height="34dp"
+                android:gravity="top"
+                android:layout_weight="1"
+                android:autoSizeTextType="uniform"
+                android:autoSizeMinTextSize="11sp"
+                android:autoSizeMaxTextSize="13sp"
+                android:autoSizeStepGranularity="2sp"
+                android:text="@{usuario.nombre}"
+                android:textStyle="bold"
+                tools:text="Nombre del operador" />
+
+            <TextView
+                android:id="@+id/tv_linea_celular"
+                android:layout_width="wrap_content"
+                android:layout_height="34dp"
+                android:layout_weight="1"
+                android:gravity="top"
+                android:autoSizeTextType="uniform"
+                android:autoSizeMinTextSize="11sp"
+                android:autoSizeMaxTextSize="13sp"
+                android:autoSizeStepGranularity="2sp"
+                android:text="@{usuario.numeroTelefono}"
+                android:textStyle="bold"
+                tools:text="Línea celular" />
+
+            <TextView
+                android:id="@+id/tv_email_operador"
+                android:layout_width="wrap_content"
+                android:layout_height="34dp"
+                android:layout_weight="1"
+                android:autoSizeTextType="uniform"
+                android:autoSizeMinTextSize="9sp"
+                android:autoSizeMaxTextSize="13sp"
+                android:autoSizeStepGranularity="1sp"
+                android:gravity="top"
+                android:text="@{usuario.email}"
+                android:textStyle="bold"
+                tools:text="zcomodin@suma.mx" />
+
+            <TextView
+                android:id="@+id/tv_unidad_asignada"
+                android:layout_width="wrap_content"
+                android:layout_height="34dp"
+                android:layout_gravity="end"
+                android:layout_weight="1"
+                android:gravity="bottom"
+                android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
+                android:text="@{mainViewModel.unidadAsignada}"
+                android:textAllCaps="false"
+                android:textColor="@color/md_theme_primary_mediumContrast"
+                tools:text="U33" />
+
+        </LinearLayout>
+
+        <!--com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_auditoria"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:visibility="gone"
+            android:layout_width="0dp"
+            android:layout_height="85dp"
+            android:layout_marginEnd="8dp"
+            android:gravity="center"
+            android:onClick="@{() -> viewModel.onNavigateToAuditorias()}"
+            android:text="@string/auditorias"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:layout_editor_absoluteY="500dp" /-->
+
+        <!--<com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_sanitizaciones"
+            android:layout_width="0dp"
+            android:layout_height="85dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:backgroundTint="@color/blue_A400"
+            android:enabled="@{usuario.acceso}"
+            android:gravity="center"
+            android:onClick="@{() -> localViewModel.onNavigateToSanitizaciones()}"
+            android:text="@string/sanitizaciones"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_unidad" />-->
+
+        <com.google.android.material.button.MaterialButton
+            style="@style/Widget.App.Button.Secondary"
+            android:id="@+id/btn_bitacoras"
+            android:layout_width="0dp"
+            android:layout_height="85dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="4dp"
+            android:enabled="@{usuario.acceso}"
+            android:onClick="@{() -> localViewModel.onNavigateToBitacoras()}"
+            android:text="@string/bitacoras"
+            app:layout_constraintEnd_toStartOf="@+id/btn_tickets"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/iv_user_photo" />
+
+        <com.google.android.material.button.MaterialButton
+            style="@style/Widget.App.Button.Secondary"
+            android:id="@+id/btn_tickets"
+            android:layout_width="0dp"
+            android:layout_height="85dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginEnd="8dp"
+            android:enabled="@{usuario.acceso}"
+            android:onClick="@{() -> localViewModel.onNavigateToTickets()}"
+            android:text="@string/tickets"
+            app:layout_constraintBaseline_toBaselineOf="@+id/btn_bitacoras"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/btn_bitacoras" />
+
+        <com.google.android.material.button.MaterialButton
+            style="@style/Widget.App.Button.Secondary"
+            android:id="@+id/btn_mantenimientos"
+            android:layout_width="0dp"
+            android:layout_height="85dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="4dp"
+            android:enabled="@{usuario.acceso}"
+            android:onClick="@{() -> localViewModel.onNavigateToMantenimientos()}"
+            android:text="@string/mantenimiento"
+            app:layout_constraintEnd_toStartOf="@+id/btn_othersKit"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_tickets" />
+
+        <com.google.android.material.button.MaterialButton
+            style="@style/Widget.App.Button.Secondary"
+            android:id="@+id/btn_othersKit"
+            android:layout_width="0dp"
+            android:layout_height="85dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginEnd="8dp"
+            android:enabled="@{usuario.acceso}"
+            android:onClick="@{() -> localViewModel.onNavigationToOthersKit()}"
+            android:text="@string/others_kit"
+            app:layout_constraintBaseline_toBaselineOf="@+id/btn_mantenimientos"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/btn_mantenimientos" />
+
+        <com.google.android.material.button.MaterialButton
+            style="@style/Widget.App.Button.Secondary"
+            android:id="@+id/btn_unidad"
+            android:layout_width="0dp"
+            android:layout_height="85dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="4dp"
+            android:enabled="@{usuario.acceso}"
+            android:onClick="@{() -> localViewModel.onNavigateToMiUnidad()}"
+            android:text="@string/mi_unidad"
+            app:layout_constraintEnd_toStartOf="@+id/btn_directorio"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_mantenimientos" />
+
+        <Button
+            style="@style/Widget.App.Button.Secondary"
+            android:id="@+id/btn_directorio"
+            android:onClick="@{() -> localViewModel.onNavigateToDirectorio()}"
+            android:text="@string/directorio"
+            android:layout_width="0dp"
+            android:layout_height="85dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:enabled="@{usuario.acceso}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/btn_unidad"
+            app:layout_constraintTop_toBottomOf="@+id/btn_othersKit" />
+
+        <com.google.android.material.button.MaterialButton
+            style="@style/Widget.App.Button.Secondary"
+            android:id="@+id/btn_sol_desplazamiento"
+            android:onClick="@{() -> localViewModel.onNavigateToSolDesplazamiento()}"
+            android:text="@string/sol_desplazamiento"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintHorizontal_bias="0.5"
+            android:layout_width="0dp"
+            android:enabled="@{usuario.acceso}"
+            android:layout_height="85dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_unidad" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <TextView
+                android:id="@+id/tv_version_app_code"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@{localViewModel.versionName}"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:textStyle="bold"
+                tools:text="v0.0.0" />
+
+            <TextView
+                android:id="@+id/tv_app_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/app_name"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:textStyle="italic"
+                tools:text="AppName" />
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

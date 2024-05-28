@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="mainViewModel"
+            type="mx.suma.drivers.SumaDriversViewModel" />
+
+        <variable
+            name="localViewModel"
+            type="mx.suma.drivers.othersKit.list.ListOtherKitViewModel" />
+    </data>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_kitLimpieza"
+                android:onClick="@{() -> localViewModel.onNavigateToKitLimpieza()}"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                style="@style/Widget.App.Button.Secondary"
+                android:gravity="center"
+                android:text="@string/kit_de_limpieza" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_adblue"
+                android:onClick="@{()-> localViewModel.onNavigateToADBLUE()}"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                style="@style/Widget.App.Button.Secondary"
+                android:gravity="center"
+                android:text="@string/adblue" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_spare_part"
+                android:onClick="@{()-> localViewModel.onNavigateToSparePart()}"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                style="@style/Widget.App.Button.Secondary"
+                android:gravity="center"
+                android:text="@string/spare_part" />
+        </LinearLayout>
+    </FrameLayout>
+</layout>
